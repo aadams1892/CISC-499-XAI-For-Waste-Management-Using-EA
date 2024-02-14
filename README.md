@@ -7,13 +7,13 @@ Using XAI to provide reasoning for our results will help policy-makers understan
 
 ## Model
 
-Individuals of the population are a location of a trash bin, bi, and a permutation of the locations of every trash bin and their distance from bi.
-For example, if we had a population size of 5 (5 trash bins), one such individual could be [(b1, [dists1]), (b2, [dists2]), (b3, [dists3]), (b4, [dists4]), (b5, [dists5])], where each bi corresponds to the location of a trash bin and each array distsi is an array of tuples of the locations of every trash bin and their distance from bi. As an example, for the individual (b1, [dists1]), b1 is the location of a trash bin and:
-dists1 = [(b1, 0), (b2, p), (b3, q), (b4, r), (b5, s)], where
+Individuals of the population are a location of a trash bin, b<sub>i</sub>, and a permutation of the locations of every trash bin and their distance from b<sub>i</sub>.
+For example, if we had a population size of 5 (5 trash bins), one such individual could be [(b<sub>1</sub>, [dists<sub>1</sub>]), (b<sub>2</sub>, [dists<sub>2</sub>]), (b3, [dists<sub>3</sub>]), (b<sub>4</sub>, [dists<sub>4</sub>]), (b<sub>5</sub>, [dists5])], where each bi corresponds to the location of a trash bin and each array distsi is an array of tuples of the locations of every trash bin and their distance from b<sub>i</sub>. As an example, for the individual (b<sub>1</sub>, [dists<sub>1</sub>]), b<sub>1</sub> is the location of a trash bin and:
+dists1 = [(b<sub>1</sub>, 0), (b<sub>2</sub>, p), (b<sub>3</sub>, q), (b<sub>4</sub>, r), (b<sub>5</sub>, s)], where
 - b<sub>1</sub> and b<sub>2</sub> are p km apart
-- b1 and b3 are q km apart
-- b1 and b4 are r km apart
-- b1 and b5 are s km apart
+- b<sub>1</sub> and b<sub>3</sub> are q km apart
+- b<sub>1</sub> and b<sub>4</sub> are r km apart
+- b<sub>1</sub> and b<sub>5</sub> are s km apart
 
 To calculate the fitness of each individual, we first calculate the penalty of the individual as the total cost. An individual’s penalty is the sum of the distances between each successive trash bin in its permutation as well as some arbitrary value based on the traffic congestion of the roads between the successive bins (see datasets section for information on the traffic congestion dataset used). This method favours individuals whose permutations include bins that are closer to one another and use roads that are less congested. Collection routes which use less congested roads minimize the time that collection vehicles are idling in traffic, which in turn minimizes the total collection time. Therefore, every individual will, at this point, have a negative value for their penalty.
 We then find the individual with the highest penalty and add this value to the penalty of every individual in the population. This will result in the worst individual having a fitness of 0 and every other individual having some value higher than this. Thus, the best individuals will have the highest fitness values.
