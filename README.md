@@ -10,7 +10,7 @@ Using XAI to provide reasoning for our results will help policy-makers understan
 Individuals of the population are a location of a trash bin, bi, and a permutation of the locations of every trash bin and their distance from bi.
 For example, if we had a population size of 5 (5 trash bins), one such individual could be [(b1, [dists1]), (b2, [dists2]), (b3, [dists3]), (b4, [dists4]), (b5, [dists5])], where each bi corresponds to the location of a trash bin and each array distsi is an array of tuples of the locations of every trash bin and their distance from bi. As an example, for the individual (b1, [dists1]), b1 is the location of a trash bin and:
 dists1 = [(b1, 0), (b2, p), (b3, q), (b4, r), (b5, s)], where
-- b1 and b2 are p km apart
+- b<sub>1</sub> and b<sub>2</sub> are p km apart
 - b1 and b3 are q km apart
 - b1 and b4 are r km apart
 - b1 and b5 are s km apart
