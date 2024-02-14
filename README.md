@@ -5,7 +5,21 @@ Our capstone project aims to use Explainable AI (XAI) to provide insights and re
 
 Using XAI to provide reasoning for our results will help policy-makers understand the logic behind the model we used, which increases the potential for our optimized route to be implemented.
 
-To-Do: Model info
+## Model
+
+Individuals of the population are a location of a trash bin, bi, and a permutation of the locations of every trash bin and their distance from bi.
+For example, if we had a population size of 5 (5 trash bins), one such individual could be [(b1, [dists1]), (b2, [dists2]), (b3, [dists3]), (b4, [dists4]), (b5, [dists5])], where each bi corresponds to the location of a trash bin and each array distsi is an array of tuples of the locations of every trash bin and their distance from bi. As an example, for the individual (b1, [dists1]), b1 is the location of a trash bin and:
+dists1 = [(b1, 0), (b2, p), (b3, q), (b4, r), (b5, s)], where
+    - b1 and b2 are p km apart
+    - b1 and b3 are q km apart
+    - b1 and b4 are r km apart
+    - b1 and b5 are s km apart
+
+To calculate the fitness of each individual, we first calculate the penalty of the individual as the total cost. An individual’s penalty is the sum of the distances between each successive trash bin in its permutation as well as some arbitrary value based on the traffic congestion of the roads between the successive bins (see datasets section for information on the traffic congestion dataset used). This method favours individuals whose permutations include bins that are closer to one another and use roads that are less congested. Collection routes which use less congested roads minimize the time that collection vehicles are idling in traffic, which in turn minimizes the total collection time. Therefore, every individual will, at this point, have a negative value for their penalty.
+We then find the individual with the highest penalty and add this value to the penalty of every individual in the population. This will result in the worst individual having a fitness of 0 and every other individual having some value higher than this. Thus, the best individuals will have the highest fitness values.
+
+At the time of writing, our EA uses hardcoded examples for testing. With data pre-processing now completed, we will implement the remaining functions required in our EA and test it using the data extracted from the datasets.
+Functions currently implemented are subject to change.
 
 ## Datasets
 ### BinLocations.csv:
@@ -30,3 +44,7 @@ Output of distanceGenerator.py given latitudes and longitudes from BrooklynSampl
   link: https://data.cityofnewyork.us/Transportation/Automated-Traffic-Volume-Counts/7ym2-wayt/about_data
 - Public Recycling Bins  
   link: https://data.world/city-of-ny/sxx4-xhzg
+
+## Articles Referenced
+- An innovative medical waste management system in a smart city using XAI and vehicle routing optimization (doi: 10.12688/f1000research.138867.2).
+This article uses XAI techniques and vehicle route optimization for a medical waste management system. It was referenced in order to gain an understanding of how XAI techniques have been implemented in similar problems.
