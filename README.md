@@ -8,8 +8,8 @@ Using XAI to provide reasoning for our results will help policy-makers understan
 ## Model
 
 Individuals of the population are a location of a trash bin, b<sub>i</sub>, and a permutation of the locations of every trash bin and their distance from b<sub>i</sub>.
-For example, if we had a population size of 5 (5 trash bins), one such individual could be [(b<sub>1</sub>, [dists<sub>1</sub>]), (b<sub>2</sub>, [dists<sub>2</sub>]), (b3, [dists<sub>3</sub>]), (b<sub>4</sub>, [dists<sub>4</sub>]), (b<sub>5</sub>, [dists5])], where each bi corresponds to the location of a trash bin and each array distsi is an array of tuples of the locations of every trash bin and their distance from b<sub>i</sub>. As an example, for the individual (b<sub>1</sub>, [dists<sub>1</sub>]), b<sub>1</sub> is the location of a trash bin and:
-dists1 = [(b<sub>1</sub>, 0), (b<sub>2</sub>, p), (b<sub>3</sub>, q), (b<sub>4</sub>, r), (b<sub>5</sub>, s)], where
+For example, if we had a population size of 5 (5 trash bins), one such individual could be [(b<sub>1</sub>, [dists<sub>1</sub>]), (b<sub>2</sub>, [dists<sub>2</sub>]), (b<sub>3</sub> , [dists<sub>3</sub>]), (b<sub>4</sub>, [dists<sub>4</sub>]), (b<sub>5</sub>, [dists<sub>5</sub>])], where each bi corresponds to the location of a trash bin and each array distsi is an array of tuples of the locations of every trash bin and their distance from b<sub>i</sub>. As an example, for the individual (b<sub>1</sub>, [dists<sub>1</sub>]), b<sub>1</sub> is the location of a trash bin and:
+dists<sub>1</sub> = [(b<sub>1</sub>, 0), (b<sub>2</sub>, p), (b<sub>3</sub>, q), (b<sub>4</sub>, r), (b<sub>5</sub>, s)], where
 - b<sub>1</sub> and b<sub>2</sub> are p km apart
 - b<sub>1</sub> and b<sub>3</sub> are q km apart
 - b<sub>1</sub> and b<sub>4</sub> are r km apart
