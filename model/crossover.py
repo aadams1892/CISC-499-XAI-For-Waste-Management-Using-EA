@@ -1,7 +1,8 @@
 # This function will go through the crossover process, from calculating if it will occur to mutating the offspring.
-def crossover(parent1, parent2):
-    offspring_base = [] # Where the two offspring will go
-    crossover_rate = 0.9 # The probability that crossover will occur.
+import random
+import mutation as mt
+def crossover(parent1, parent2, rate):
+    crossover_rate = rate # The probability that crossover will occur.
     crossover_occurs = random.random()
 
     print(crossover_rate, crossover_occurs)
@@ -20,8 +21,8 @@ def crossover(parent1, parent2):
         offspring2_raw = parent2
 
     # Call mutation function on both offspring.
-    offspring1 = mutate(offspring1_raw)
-    offspring2 = mutate(offspring2_raw)
-    offspring = [offspring1, offspring2]
+    offspring1 = mt.mutate(offspring1_raw)
+    offspring2 = mt.mutate(offspring2_raw)
+    offsprings = [offspring1, offspring2]
 
-    return offspring
+    return offsprings

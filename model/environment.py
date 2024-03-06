@@ -3,19 +3,6 @@ import numpy as np
 from enum import IntEnum
 import csv
 
-class Action(IntEnum):
-    up = 0
-    right = 1
-    down = 2
-    left = 3
-
-action_to_offset = {
-    Action.up : (-1, 0),
-    Action.right : (0, 1),
-    Action.down : (1, 0),
-    Action.left : (0, -1),
-}
-
 class BinInfo:
 
     def __init__(self, bin_file, dict_file):
@@ -41,7 +28,7 @@ class BinInfo:
         try:
             return (self.dist[state1][state2])
         except KeyError:
-            return 9999
+            return 999
             
     def get_closest(self, state):
         # Returns the closest bin from 'state'.
@@ -53,13 +40,13 @@ class BinInfo:
     def get_actions(self, state):
         # Returns list of keys associated with the current state.
         # Each represents a state that can be moved to.
-        return self.dist[state].keys()
+        return list(self.dist[state].keys())
 
-def main():
+if __name__ ==  "__main__":
     bin_map = BinInfo('../datasets/BinLocations.csv', '../datasets/BinDistances.csv')
     print("BIN 0:")
     print(bin_map.get_roads(0))
     print(bin_map.get_coord(0))
     print("Closest bin:", bin_map.get_closest(0))
     print("Distance   :", round(bin_map.get_dist(0,10),4), "km")
-main()
+    print(bin_map.get_actions(0))

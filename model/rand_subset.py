@@ -2,6 +2,9 @@
 def rand_subset(indiv, subset_size):
     subset_point = random.randrange(len(indiv))
     subset = []
+
+# I CAN OPTIMIZE THIS MORE BY INITIALIZING SUBSET TO BE SUBSET_SIZE ZEROS AND THEN ASSIGNING.
+
     # If the subset_point selected is greater than the length of the population with itself subtracted,
     # then the ending index of the subset would be out of range. Therefore, we will need to wrap around
     # the population.

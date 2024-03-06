@@ -1,12 +1,19 @@
-def fitness(population):
+def fitness(individual, bin_info, bin_count):
 
-    # In this function, we will need to use the traffic congestion data as part of the calculation for fitness.
+    # Computes fitness using individual length, and total distance 
 
-    # For now, this is a placeholder function.
-    penalty = 0
-    max_penalty = 0
-    for indiv in population:
-        for i in range(len(indiv)):
-            penalty += indiv[i+1] - indiv[i] # Distance between consecutive points
-        
-    return penalty
+    length = len(individual)
+    dist = 0
+    for bin in range(len(individual)-1):
+        dist += bin_info.get_dist(individual[bin], individual[bin+1]) # Distance between consecutive bins.
+    fit = length - dist
+    if(fit < 0): fit = 0
+    return fit
+
+
+if __name__ ==  "__main__":
+    import environment as en
+    bin_info = en.BinInfo('../datasets/BinLocations.csv', '../datasets/BinDistances.csv')
+    bin_count = len(bin_info.bins)
+    print(fitness([0,2,3],bin_info,bin_count))
+
