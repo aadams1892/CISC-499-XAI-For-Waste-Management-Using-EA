@@ -7,7 +7,7 @@ def pmx(parent1, parent2):
     # Get a continuous subset from p1, then perform PMX on offspring1. No limit on initial subset size, but we start at 1 to ensure
     # that some crossover does actually occur.
     subset_size = random.randrange(1, len(parent1))
-    offspring_subset = rand_subset(parent1, subset_size) # The subset that will be placed into the offspring.
+    offspring_subset = rand_subset.rand_subset(parent1, subset_size) # The subset that will be placed into the offspring.
     # Get starting and ending indices of subset so we can place it in the offspring.
     start_index = parent1.index(offspring_subset[0])
     end_index = parent1.index(offspring_subset[subset_size-1])
@@ -78,3 +78,6 @@ def pmx(parent1, parent2):
                 i = 0
 
     return offspring
+
+if __name__ ==  "__main__":
+    print(pmx([1,2,3],[4,5,1]))

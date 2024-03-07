@@ -9,18 +9,32 @@ def inv_mut(indiv, rate):
         # Indices randomly chosen such that they cannot equal each other.
         inversion_start = random.choice([i for i in range(len(indiv))])
         inversion_end = random.choice([i for i in range(len(indiv)) if (i != inversion_start)])
-        # Ensures inversion_start is a smaller idx than inversion_end
-        if (inversion_start > inversion_end): 
-            inversion_start, inversion_end = inversion_end, inversion_start
-        
-        # Creates subset from inversion_start to inversion_end (inclusive)
-        inversion_subset = indiv[inversion_start:inversion_end+1]
-        inversion_subset.reverse()
-        return indiv[:inversion_start] + inversion_subset + indiv[inversion_end+1:]
+        if inversion_end < inversion_start:
+            inversion_subset1 = indiv[inversion_start:]
+            inversion_subset2 = indiv[:inversion_end+1]
+            inversion_subset = inversion_subset1 + inversion_subset2
+            
+            inversion_subset.reverse() # Reverse the subset.
+            index_split = len(indiv) - inversion_start
 
-    # Mutation is not performed
+            # Replace original individual with inverted subset.
+            # Take the first index_split elements of the inversion_subset, since these will be the 'last' elements of the inversion.
+            # We then take the part of the individual that was not mutated.
+            # We then take the last index_split elements from the mutated subset, since these were the 'first' elements in the
+            # inverted subset.
+            mutated_indiv = inversion_subset[index_split:] + indiv[inversion_end+1:inversion_start] + inversion_subset[:index_split]
+
+        else:
+            # No wrap around
+            inversion_subset = indiv[inversion_start:inversion_end+1]
+            inversion_subset.reverse()
+            mutated_indiv = indiv[:inversion_start] + inversion_subset + indiv[inversion_end+1:]
+
+    # No mutation, directly copy individual.
     else:
-        return indiv
-    
+        mutated_indiv = indiv
+
+    return mutated_indiv
+
 if __name__ ==  "__main__":
     print("[1, 2, 3, 4, 5, 6] --> ", inv_mut([1,2,3,4,5,6], 1))
