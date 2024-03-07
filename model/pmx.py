@@ -7,18 +7,17 @@ def pmx(parent1, parent2):
     # Get a continuous subset from p1, then perform PMX on offspring1. No limit on initial subset size, but we start at 1 to ensure
     # that some crossover does actually occur.
     subset_size = random.randrange(1, len(parent1))
-    offspring_subset = rand_subset.rand_subset(parent1, subset_size)
-    # Get starting and ending indices of subset so we can place it in offspring1.
+    offspring_subset = rand_subset(parent1, subset_size) # The subset that will be placed into the offspring.
+    # Get starting and ending indices of subset so we can place it in the offspring.
     start_index = parent1.index(offspring_subset[0])
     end_index = parent1.index(offspring_subset[subset_size-1])
     # Initialize offspring
-    print(start_index, end_index, offspring_subset)
     offspring = [False]*len(parent1)
 
     # Assign the initial subset
+    index_to_add = start_index
     # If the subset wraps around
     if end_index < start_index:
-        index_to_add = start_index
         for i in offspring_subset:
             # Add value
             if index_to_add < len(parent1):
@@ -31,13 +30,13 @@ def pmx(parent1, parent2):
 
     # No wrap around
     else:
-        offspring[start_index:end_index] = offspring_subset
+        for i in offspring_subset:
+            offspring[index_to_add] = i
+            index_to_add += 1
 
-    print([parent1, parent2, offspring])
-    # Go through parent2, starting from start_index, and map the remainding values.
-    # If we add a value to the offspring
     value_added = True
-    i = start_index # Initially start at the left end of the original subset.
+    i = start_index # Going through the elements of parent2, starting at start_index.
+    # Continue looping so long as a value gets added to the offspring.
     while value_added:
         value_added = False
 
@@ -54,35 +53,28 @@ def pmx(parent1, parent2):
 
                 # Index i of the offspring is filled. Find an alternate index.
                 else:
-                    print("Index", i, "of offspring filled.")
                     # Make copy of i so we keep a constant progression of values of i.
                     index = i
-                    index_found = False
-                    while not index_found:
-                        # Get the location in parent2 of offspring[index]
-                        free_index = parent2.index(offspring[index])
-                        print("Free index:", free_index)
-                        # Index in offspring is empty, add value from parent2 here.
-                        if offspring[free_index] == False:
-                            print("Index", free_index, "of offspring empty.")
-                            offspring[free_index] = parent2[index]
-                            index_found = True
-                            value_added = True
-                            print("Offspring updated:", offspring)
+                    free_index_found = False
+                    # Continue searching until we find a free index in the offspring.
+                    while not free_index_found:
+                        # Get the location in parent2 where the value in offspring[i] is.
+                        next_location = parent2.index(offspring[index])
+                        # Check if that location is free in the offspring.
+                        # Location is free, add value.
+                        if offspring[next_location] == False:
+                            offspring[next_location] = parent2[i]
+                            free_index_found = True
 
-                        # That index in the offspring is already filled by another value. Repeat process.
+                        # The location is already filled in the offspring. The next location we check is the location in parent2
+                        # where this value in the offspring is.
                         else:
-                            print("Index", free_index, "of offspring filled, repeating.")
-                            index = free_index
-                            
+                            index = next_location
+                                 
             # Move to next index
             i += 1
             # Since we started at start_index, if we hit the 'end' of parent2, we still need to go from index 0 to start_index-1.
             if i == len(parent2):
                 i = 0
-
-            print(offspring)
-        
-        input("Iteration over, continue: ")
 
     return offspring
