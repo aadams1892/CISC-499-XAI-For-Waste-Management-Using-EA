@@ -1,3 +1,4 @@
+import random
 # Return a continuous subset of an individual of size subset_size.
 def rand_subset(indiv, subset_size):
     subset_point = random.randrange(len(indiv))

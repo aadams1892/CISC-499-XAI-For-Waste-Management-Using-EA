@@ -1,4 +1,4 @@
-def fitness(individual, bin_info, bin_count):
+def fitness(individual, bin_info):
 
     # Computes fitness using individual length, and total distance 
 
@@ -12,8 +12,8 @@ def fitness(individual, bin_info, bin_count):
 
 
 if __name__ ==  "__main__":
-    import environment as en
-    bin_info = en.BinInfo('../datasets/BinLocations.csv', '../datasets/BinDistances.csv')
+    import environment
+    bin_info = environment.BinInfo('../datasets/BinLocations.csv', '../datasets/BinDistances.csv')
     bin_count = len(bin_info.bins)
     print(fitness([0,2,3],bin_info,bin_count))
 

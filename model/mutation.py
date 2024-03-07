@@ -1,7 +1,7 @@
 import random
 
 # Performs Inversion Mutation on an individual
-def mutate(indiv, rate):
+def inv_mut(indiv, rate):
     mutation_rate = rate # Best value found to be around 0.3
     mutation_occurs = random.random() 
 
@@ -23,4 +23,4 @@ def mutate(indiv, rate):
         return indiv
     
 if __name__ ==  "__main__":
-    print("[1, 2, 3, 4, 5, 6] --> ", mutate([1,2,3,4,5,6], 1))
+    print("[1, 2, 3, 4, 5, 6] --> ", inv_mut([1,2,3,4,5,6], 1))
