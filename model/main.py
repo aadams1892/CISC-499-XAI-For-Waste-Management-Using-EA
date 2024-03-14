@@ -8,8 +8,6 @@ import survivor_selection
 import environment
 import mutation
 
-import deap.tools as dt
-
 def main():
 
     random.seed()
