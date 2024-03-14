@@ -7,7 +7,11 @@ def tournament_select(population, fitness, mating_pool_size, tournament_size):
     # Get a random subset of the population to compete in the tournament
     while(len(parent_indices) < mating_pool_size):
         # Chooses random subset of population with no repetition
-        pop_subset = np.random.choice(parent_list, tournament_size, False)
+        pop_idx = list(np.random.randint(len(parent_list), size=tournament_size))
+        pop_subset = []
+        for i in pop_idx:
+            pop_subset.append(parent_list[i])
+        
 
         # Finds index of parent with greatest fitness from subset
         best_fitness = 0

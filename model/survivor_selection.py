@@ -7,4 +7,4 @@ def mu_plus_lambda(population, fitness, offspring, offspring_fitness):
     # Finds sorted population and fitness of merged population
     new_pop, new_fit = merge_sort.sort(merged_pop, merged_fit)
     # Returns as many individuals as were in the original population, starting with the most fit
-    return new_pop[:len(population)], new_fit[:len(population)]
+    return new_pop[-len(population):], new_fit[-len(population):]
