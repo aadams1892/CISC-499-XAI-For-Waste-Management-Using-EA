@@ -28,8 +28,7 @@ class BinInfo:
         try:
             return (self.dist[state1][state2])
         except KeyError:
-            return 999
-            
+            return 1           
     def get_closest(self, state):
         # Returns the closest bin from 'state'.
         values = list(self.dist[state].values())
@@ -50,3 +49,4 @@ if __name__ ==  "__main__":
     print("Closest bin:", bin_map.get_closest(0))
     print("Distance   :", round(bin_map.get_dist(0,10),4), "km")
     print(bin_map.get_actions(0))
+    print(bin_map.get_dist(0,7))

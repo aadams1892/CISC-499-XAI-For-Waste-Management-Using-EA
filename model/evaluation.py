@@ -6,7 +6,7 @@ def fitness(individual, bin_info):
     for bin in range(len(individual)-1):
         dist += bin_info.get_dist(individual[bin], individual[bin+1]) # Distance between consecutive bins.
     if (dist > 0):
-        fit = 10000/dist
+        fit = len(individual)/dist
     else:
         fit = 0
     return fit

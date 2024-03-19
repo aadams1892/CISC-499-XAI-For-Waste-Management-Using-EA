@@ -1,7 +1,7 @@
 import random
 import pmx
 
-def crossover_main(parent1, parent2, rate):
+def crossover_main(parent1, parent2, rate, bin_info):
     crossover_rate = rate # The probability that crossover will occur.
     crossover_occurs = random.random()
 

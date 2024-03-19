@@ -7,7 +7,7 @@ import numpy as np
 # Used to generate dictionaries for each bin representing its distance from
 # other bins. Needs to be modified so that each dict only contains 4 entries
 # representing the closest bin in each direction from the current one.
-data = list(csv.reader(open('../datasets/BinLocations.csv', newline='')))
+data = list(csv.reader(open('../datasets/BinLocations - Small.csv', newline='')))
 dictionary_list = []
 for row in data[1:]:
     dist = {}
@@ -18,7 +18,7 @@ for row in data[1:]:
         idx += 1
     dictionary_list.append(dist)
 
-with open('../datasets/BinDistances.csv', 'w', newline='') as dict_output:
+with open('../datasets/BinDistances - Small.csv', 'w', newline='') as dict_output:
     writer = csv.DictWriter(dict_output, list(range(len(data) - 1)))
     writer.writeheader()
     writer.writerows(dictionary_list)
