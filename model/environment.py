@@ -7,7 +7,7 @@ class BinInfo:
 
     def __init__(self, bin_file, dict_file):
         self.bins = list(csv.reader(open(bin_file, newline='')))
-        self.bins.pop(0) # Skips csv header
+        self.headers = self.bins.pop(0) # Skips csv header
 
         reader = list(csv.DictReader(open(dict_file)))
         self.dist = [] # List of dictionaries, each representing distance of other bins from current one.
