@@ -8,7 +8,9 @@ class BinInfo:
     def __init__(self, bin_file, dict_file):
         self.bins = list(csv.reader(open(bin_file, newline='')))
         self.headers = self.bins.pop(0) # Skips csv header
-
+        for row in self.bins:
+            row[-1] = float(row[-1])
+            row[-2] = float(row[-2])
         reader = list(csv.DictReader(open(dict_file)))
         self.dist = [] # List of dictionaries, each representing distance of other bins from current one.
         for row in reader:
@@ -43,6 +45,7 @@ class BinInfo:
 
 if __name__ ==  "__main__":
     bin_map = BinInfo('../datasets/BinLocations.csv', '../datasets/BinDistances.csv')
+    """
     print("BIN 0:")
     print(bin_map.get_roads(0))
     print(bin_map.get_coord(0))
@@ -50,3 +53,4 @@ if __name__ ==  "__main__":
     print("Distance   :", round(bin_map.get_dist(0,10),4), "km")
     print(bin_map.get_actions(0))
     print(bin_map.get_dist(0,7))
+    """
