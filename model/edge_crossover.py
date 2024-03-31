@@ -122,14 +122,12 @@ def crossover(parent1, parent2):
 
 
 if __name__ ==  "__main__":
-
-    # p1 = [1,2,3,4,5,6,7,8,9]
-    #p2 = [9,3,7,8,2,6,5,1,4]
-    #print(crossover(p1,p2))
-    for _ in range(10):
-        p1, p2 = random.sample([1,2,3,4,5,6,7], 7), random.sample([1,2,3,4,5,6,7], 7)
-        offspring = crossover(p1,p2)
-        print(p1, "+", p2, "-->", offspring)
-        print("\n")
+    
+    if DEBUG:
+        for _ in range(10):
+            p1, p2 = random.sample([1,2,3,4,5,6,7], 7), random.sample([1,2,3,4,5,6,7], 7)
+            offspring = crossover(p1,p2)
+            print(p1, "+", p2, "-->", offspring)
+            print("\n")
 
     
