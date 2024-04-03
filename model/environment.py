@@ -30,7 +30,7 @@ class BinInfo:
         try:
             return (self.dist[state1][state2])
         except KeyError:
-            return 1           
+            return 9999           
     def get_closest(self, state):
         # Returns the closest bin from 'state'.
         values = list(self.dist[state].values())
