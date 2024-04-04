@@ -6,8 +6,11 @@ def pop_init(pop_size, bin_info, bin_count):
         # Each individual is represented by a list of bin indices
         indiv = []
         indiv = list(np.random.permutation(bin_count))
+
+        # Done to ensure the starting state is bin 0
         indiv.remove(0)
         indiv.insert(0,0)
+        
         population.append(indiv)
 
     return population
